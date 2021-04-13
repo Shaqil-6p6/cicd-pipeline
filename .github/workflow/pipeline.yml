@@ -3,12 +3,14 @@ name: pipeline
 on: push
 
 jobs:
-    runs-on: ubuntu-latest
     test:
-        uses: action/checkout@v2
-        run: hello.py
+        runs-on: ubuntu-latest
+        steps:
+        - uses: actions/checkout@v2
+          run: hello.py
     build:
         needs: [test]
-        uses: action/checkout@v2
-        uses: action/create-artifact
-        run: hello.py
+        runs-on: ubuntu-latest
+        - uses: actions/checkout@v2
+        - uses: actions/create-artifact
+          run: hello.py

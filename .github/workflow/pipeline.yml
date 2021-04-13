@@ -1,0 +1,14 @@
+name: pipeline
+
+on: push
+
+jobs:
+    runs-on: ubuntu-latest
+    test:
+        uses: action/checkout@v2
+        run: hello.py
+    build:
+        needs: [test]
+        uses: action/checkout@v2
+        uses: action/create-artifact
+        run: hello.py
